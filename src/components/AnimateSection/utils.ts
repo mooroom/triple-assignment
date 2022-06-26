@@ -3,7 +3,7 @@ function easeOutExpo(t: number, b: number, c: number, d: number) {
 }
 
 export const numIncrease = (
-  ref: React.RefObject<HTMLHeadingElement>,
+  ref: React.RefObject<HTMLSpanElement>,
   from: number,
   to: number,
   duration: number,

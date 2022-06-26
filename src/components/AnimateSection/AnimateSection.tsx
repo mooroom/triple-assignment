@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import * as S from './styles'
 
 import { numIncrease } from './utils'
@@ -6,41 +6,47 @@ import { numIncrease } from './utils'
 import GoogleBadge from '../../images/play-store2x.png'
 import AppleBadge from '../../images/badge-apple4x.png'
 
+const FROM = 0
+const TO = 2000
+
 export default function AnimateSection() {
-  const ref1 = useRef<HTMLHeadingElement>(null)
-  const ref2 = useRef<HTMLHeadingElement>(null)
-  const ref3 = useRef<HTMLHeadingElement>(null)
+  const [animate, setAnimate] = useState(false)
+
+  const spanRef1 = useRef<HTMLSpanElement>(null)
+  const spanRef2 = useRef<HTMLSpanElement>(null)
+  const spanRef3 = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
-    numIncrease(ref1, 0, 350, 2000)
-    numIncrease(ref2, 0, 21, 2000)
-    numIncrease(ref3, 0, 650, 2000)
+    setAnimate(true)
+    numIncrease(spanRef1, FROM, 700, TO)
+    numIncrease(spanRef2, FROM, 100, TO)
+    numIncrease(spanRef3, FROM, 470, TO)
   }, [])
 
   return (
     <S.SectionContainer>
-      <S.ContentLogo>2019년 12월 기준</S.ContentLogo>
-      <S.MetricsContainer>
+      <S.ContentLogo animate={animate}>2021년 12월 기준</S.ContentLogo>
+      <S.MetricsContainer animate={animate}>
         <S.MetricItem>
           <strong>
-            <span ref={ref1}>{0}</span>만 명
+            <span ref={spanRef1}>{0}</span>만 명
           </strong>
           의 여행자
         </S.MetricItem>
         <S.MetricItem>
           <strong>
-            <span ref={ref2}>{0}</span>만 개
+            <span ref={spanRef2}>{0}</span>만 개
           </strong>
           의 여행 리뷰
         </S.MetricItem>
         <S.MetricItem>
           <strong>
-            <span ref={ref3}>{0}</span>만 개
+            <span ref={spanRef3}>{0}</span>만 개
           </strong>
           의 여행 일정
         </S.MetricItem>
       </S.MetricsContainer>
-      <S.AwardsContainer>
+      <S.AwardsContainer animate={animate}>
         <S.AwardItem style={{ backgroundImage: `url(${GoogleBadge})` }}>
           2018 구글 플레이스토어
           <br />

@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components/macro'
+import styled, { keyframes, css } from 'styled-components/macro'
 import Logo from '../../images/triple2x.png'
 
 const slideUp = keyframes`
@@ -11,13 +11,21 @@ const slideUp = keyframes`
     transform: translateY(0%);
   }
 `
+
+const animationStyles = css`
+  animation-name: ${slideUp};
+  animation-duration: 0.7s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+`
+
 export const SectionContainer = styled.section`
   position: relative;
   width: 1200px;
   height: auto;
   margin: 0 auto;
 `
-export const ContentLogo = styled.div`
+export const ContentLogo = styled.div<{ animate: boolean }>`
   position: absolute;
   top: 150px;
   width: 400px;
@@ -31,22 +39,15 @@ export const ContentLogo = styled.div`
   text-align: center;
   color: rgba(58, 58, 58, 0.7);
 
-  animation-delay: 0s;
-  animation-duration: 0.7s;
-  animation-timing-function: ease-out;
-  animation-name: ${slideUp};
-  animation-fill-mode: forwards;
+  ${(props) => props.animate && animationStyles}
 `
 
-export const MetricsContainer = styled.div`
+export const MetricsContainer = styled.div<{ animate: boolean }>`
   margin-left: 623px;
   padding-top: 150px;
 
+  ${(props) => props.animate && animationStyles}
   animation-delay: 0.1s;
-  animation-duration: 0.7s;
-  animation-timing-function: ease-out;
-  animation-name: ${slideUp};
-  animation-fill-mode: forwards;
 `
 
 export const MetricItem = styled.div`
@@ -56,15 +57,12 @@ export const MetricItem = styled.div`
   color: rgb(58, 58, 58);
   font-family: sans-serif;
 `
-export const AwardsContainer = styled.div`
+export const AwardsContainer = styled.div<{ animate: boolean }>`
   margin: 50px 0px 140px 623px;
   white-space: nowrap;
 
+  ${(props) => props.animate && animationStyles}
   animation-delay: 0.2s;
-  animation-duration: 0.7s;
-  animation-timing-function: ease-out;
-  animation-name: ${slideUp};
-  animation-fill-mode: forwards;
 `
 
 export const AwardItem = styled.div`
